@@ -22,9 +22,13 @@
     "production": {
         "username": "root",
         "password": null,
-        "database": "database_production",
+        "database": "social_database",
         "host": "127.0.0.1",
+        "logging": false,
         "dialect": "mariadb",
-        "timezone": "+07:00"
+        "timezone": "+07:00",
+        "query" : {
+            "raw": true
+        }
     }
 }
