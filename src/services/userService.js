@@ -41,11 +41,13 @@ let createNewUser = (id, password, firstName, lastName, sex, dateOfBirth, avatar
 let login = (id, password) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const idLogin = id+''
+            const passwordLogin = password+''
             let dataReturn = {}
-            const checkCode = await checkUserMatch(id, password)
+            const checkCode = await checkUserMatch(idLogin, passwordLogin)
             switch (checkCode) {
                 case 0:
-                    dataReturn = await getInformationUserLogin(id)
+                    dataReturn = await getInformationUserLogin(idLogin)
                     resolve(dataReturn)
                     break;
                 case 1:
