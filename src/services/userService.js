@@ -41,8 +41,8 @@ let createNewUser = (id, password, firstName, lastName, sex, dateOfBirth, avatar
 let login = (id, password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const idLogin = id+''
-            const passwordLogin = password+''
+            const idLogin = id.toString()
+            const passwordLogin = password.toString()
             let dataReturn = {}
             const checkCode = await checkUserMatch(idLogin, passwordLogin)
             switch (checkCode) {
