@@ -19,7 +19,8 @@ app.use(cookieParser());
 //     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 //     next();
 // });
-app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+// app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+app.use(cors());
 
 initWebRoutes(app);
 
