@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const app = express();
 
+// app.options("*", cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200 }));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
@@ -18,8 +19,7 @@ app.use(cookieParser());
 //     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 //     next();
 // });
-// app.options("*", cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200 }));
-// app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
 
 initWebRoutes(app);
 
