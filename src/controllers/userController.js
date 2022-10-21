@@ -48,7 +48,7 @@ const handleLoginUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(400)
-        res.json({ error: 'BAD REQUEST'})
+        res.json({ error })
         return res
     }
 }
