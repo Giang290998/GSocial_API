@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Giang290998/nodejs_social#readme",
   "dependencies": {
+    "@forestadmin/agent": "^1.1.0",
+    "@forestadmin/datasource-sequelize": "^1.0.0",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
@@ -30,6 +32,8 @@
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^3.0.0",
     "mysql2": "^2.3.3",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
     "redis": "^4.3.1",
     "sequelize": "^6.19.0"
   },

@@ -1,14 +1,20 @@
 {
     "development": {
-        "username": "root",
-        "password": "nguyenhoanggiang290998",
-        "database": "social_database",
-        "host": "127.0.0.1",
+        "username": "gsocial_database_postgresql_user",
+        "password": "2MRix7hYJ5tQICHVuKR3G07duR2Cje6g",
+        "database": "gsocial_database_postgresql",
+        "host": "dpg-cd8qidha6gds9o6ofhe0-a.singapore-postgres.render.com",
         "logging": false,
-        "dialect": "mariadb",
+        "dialect": "postgres",
         "timezone": "+07:00",
         "query" : {
             "raw": true
+        },
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
         }
     },
     "test": {

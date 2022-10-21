@@ -26,7 +26,7 @@ module.exports = {
                 allowNull:false,
             },
             sex: {
-                type: Sequelize.BOOLEAN,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             phoneNumber: {
