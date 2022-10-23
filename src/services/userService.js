@@ -23,7 +23,7 @@ let createNewUser = (id, password, firstName, lastName, sex, dateOfBirth, avatar
                     userId: id,
                     firstName: firstName, 
                     lastName: lastName, 
-                    sex: sex,
+                    sex: sex.toString(),
                     dateOfBirth: dateOfBirth,
                     avatar: avatar ? avatar : null
                 })

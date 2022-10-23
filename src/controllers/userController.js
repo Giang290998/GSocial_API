@@ -35,11 +35,11 @@ const handleLoginUser = async (req, res) => {
             packageRes.accessToken = accessToken
             packageRes.rememberToken = rememberToken
             res.cookie("refreshToken", refreshToken,
-                {
-                    httpOnly: true,
-                    sameSite: "strict",
-                    secure: true,
-                }
+                // {
+                //     httpOnly: true,
+                //     sameSite: "strict",
+                //     secure: true,
+                // }
             )
         }
         res.json({ ...packageRes })
@@ -68,11 +68,11 @@ const handleLoginWithEmail = async (req, res) => {
             packageRes.accessToken = accessToken
             packageRes.rememberToken = rememberToken
             res.cookie("refreshToken", refreshToken,
-                {
-                    httpOnly: true,
-                    sameSite: "strict",
-                    secure: true,
-                }
+                // {
+                //     httpOnly: true,
+                //     sameSite: "strict",
+                //     secure: true,
+                // }
             )
         }
         res.json({ ...packageRes })
@@ -96,11 +96,11 @@ const handleLoginWithRememberToken = async (req, res) => {
             const refreshToken = JWTAction.createRefreshToken(payload)
             packageRes.accessToken = accessToken
             res.cookie("refreshToken", refreshToken,
-                {
-                    httpOnly: true,
-                    sameSite: "strict",
-                    secure: true,
-                }
+                // {
+                //     httpOnly: true,
+                //     sameSite: "strict",
+                //     secure: true,
+                // }
             )
         }
         res.json({ ...packageRes })

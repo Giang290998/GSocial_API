@@ -119,7 +119,7 @@ let modifiedAllMessageStatus = (userId, allRoomId, newStatus) => {
             let allUpdateMessagePromise = []
             if (newStatus === 'received') {
                 const allMessageStatusSentInRoomPromise = idRoomArr.map(id => 
-                    db.Message.findAll({ where: { chatRoomId: id, messageStatus: 'sent', userId: !userId }})
+                    db.Message.findAll({ where: { chatRoomId: id.toString(), messageStatus: 'sent' }})
                 )
                 const allMessageFind = await Promise.all([ ...allMessageStatusSentInRoomPromise ])
                 allMessageFind.forEach(allMessageInRoom => {
@@ -152,7 +152,7 @@ let getAllMessage = (idRoomString) => {
             let chatRoomMemberFullName = []
             let chatRoomUserId = []
             for (let i = 0; i < idRoomArr.length; i++) {
-                const chatRoom = await db.ChatRoom.findOne({ where: { id: idRoomArr[i] }})
+                const chatRoom = await db.ChatRoom.findOne({ where: { id: idRoomArr[i].toString() }})
                 const userIdMemberRoomArr = JSON.parse(chatRoom.allUserId) 
                 chatRoomUserId.push(userIdMemberRoomArr)
                 let avatarMemberRoom = []
@@ -168,7 +168,7 @@ let getAllMessage = (idRoomString) => {
                 chatRoomMemberFullName.push(fullNameMemberRoom)
             }
             for (let i = 0; i < idRoomArr.length; i++) {
-                const mess = await db.Message.findAll({ where: { chatRoomId: idRoomArr[i] }}) 
+                const mess = await db.Message.findAll({ where: { chatRoomId: idRoomArr[i].toString() }}) 
                 chatRoomDetail.push(mess)
             }
             dataReturn.errCode = 0

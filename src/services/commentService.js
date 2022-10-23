@@ -16,7 +16,7 @@ let createParentComment = (postId, userId, commentType, commentContent, idTempo)
                 { totalComment: 1, totalParentComment: 1 }
             const updateNumberCommentPost = db.Post.update({ comment: newComment }, { where: { id: postId } })
             const newParentComment = db.ParentComment.create({
-                postId: postId,
+                postId: postId.toString(),
                 userId: userId,
                 commentType: commentType,
                 commentContent: commentContent,
@@ -26,9 +26,7 @@ let createParentComment = (postId, userId, commentType, commentContent, idTempo)
             dataReturn.message = "OK. Created new parent comment."
             dataReturn.idTempo = idTempo
             dataReturn.newParentComment = promiseResult[0]
-            setTimeout(() => {
-                resolve(dataReturn)
-            }, 1000)
+            resolve(dataReturn)
         } catch (error) {
             reject(error)
         }
@@ -54,7 +52,7 @@ let createReplyComment = (postId, parentCommentId, userId, commentType, commentC
             const updateNumberReplyParentComment = 
                 db.ParentComment.update({ replyComment: newReplyCommentObj }, { where: { id: parentCommentId }})
             const newReplyComment = db.ReplyComment.create({
-                parentCommentId: parentCommentId,
+                parentCommentId: parentCommentId.toString(),
                 userId: userId,
                 commentType: commentType,
                 commentContent: commentContent,
@@ -64,9 +62,7 @@ let createReplyComment = (postId, parentCommentId, userId, commentType, commentC
             dataReturn.message = "OK. Created new reply comment."
             dataReturn.idTempo = idTempo
             dataReturn.newReplyComment = promiseUpdate[0]
-            setTimeout(() => {
-                resolve(dataReturn)
-            }, 1000)
+            resolve(dataReturn)
         } catch (error) {
             reject(error)
         }
@@ -93,7 +89,7 @@ let createReplyChildComment = (postId, replyCommentId, userId, commentType, comm
             const updateNumberReplyOfReplyComment = 
                 db.ReplyComment.update({ replyChildComment: newReplyChildCommentObj }, { where: { id: replyCommentId }})
             const newReplyChildComment = db.ReplyChildComment.create({
-                replyCommentId: replyCommentId,
+                replyCommentId: replyCommentId.toString(),
                 userId: userId,
                 commentType: commentType,
                 commentContent: commentContent,
@@ -103,9 +99,7 @@ let createReplyChildComment = (postId, replyCommentId, userId, commentType, comm
             dataReturn.message = "OK. Created new reply child comment."
             dataReturn.idTempo = idTempo
             dataReturn.newReplyChildComment = promiseUpdate[0]
-            setTimeout(() => {
-                resolve(dataReturn)
-            }, 1000)
+            resolve(dataReturn)
         } catch (error) {
             reject(error)
         }
@@ -116,7 +110,7 @@ let getParentComment = (postId, offSet) => {
     return new Promise(async (resolve, reject) => {
         try {
             let dataReturn = {}
-            let parentCommentArr = await db.ParentComment.findAll({ offset: offSet, limit: 5, where: { postId: postId } })
+            let parentCommentArr = await db.ParentComment.findAll({ offset: offSet, limit: 5, where: { postId: postId.toString() } })
             let newParentCommentArr = []
             for (const parentComment of parentCommentArr) {
                 const user = await db.UserInfo.findOne({ where: { userId: parentComment.userId }})
@@ -141,7 +135,7 @@ let getReplyComment = (parentCommentId) => {
     return new Promise(async (resolve, reject) => {
         try {
             let dataReturn = {}
-            let childCommentArr = await db.ReplyComment.findAll({ where: { parentCommentId: parentCommentId } })
+            let childCommentArr = await db.ReplyComment.findAll({ where: { parentCommentId: parentCommentId.toString() } })
             let newReplyCommentArr = []
             for (const replyComment of childCommentArr) {
                 const user = await db.UserInfo.findOne({ where: { userId: replyComment.userId }})
@@ -166,7 +160,7 @@ let getReplyChildComment = (replyCommentId) => {
     return new Promise(async (resolve, reject) => {
         try { 
             let dataReturn = {}
-            let replyChildCommentArr = await db.ReplyChildComment.findAll({ where: { replyCommentId: replyCommentId } })
+            let replyChildCommentArr = await db.ReplyChildComment.findAll({ where: { replyCommentId: replyCommentId.toString() } })
             let newReplyChildCommentArr = []
             for (const replyChildComment of replyChildCommentArr) {
                 const user = await db.UserInfo.findOne({ where: { userId: replyChildComment.userId }})
