@@ -92,7 +92,7 @@ let modifiedStatusOfManyMessage = (roomId, roomRole, newStatus, userId) => {
             let dataReturn = {}
             if (roomRole === 'normal') {
                 const statusFind = newStatus === 'received' ? 'sent' : 'received'
-                const messageModified = await db.Message.findAll({ where: { chatRoomId: roomId, messageStatus: statusFind, userId }})
+                const messageModified = await db.Message.findAll({ where: { chatRoomId: roomId.toString(), messageStatus: statusFind, userId }})
                 const updatePromise = messageModified.map(message => 
                     db.Message.update({ messageStatus: newStatus }, { where: { id: message.id }})
                 )
