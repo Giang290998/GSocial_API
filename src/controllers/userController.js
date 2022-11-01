@@ -147,6 +147,18 @@ const handleCreateFriendRequest = async (req, res) => {
     }
 }
 
+const handleSearchUser = async (req, res) => {
+    try {
+        const name = req.params.stringSearch
+        let packageRes = await userService.searchUser(name)
+        res.json({ ...packageRes })
+        packageRes.errCode === 0 ? res.status(201) : res.status(406)
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const handleDeleteFriendRequest = async (req, res) => {
     try {
         const { fromUser, toUser, isAccept } = req.body
@@ -172,5 +184,5 @@ function randomPassword(length) {
 module.exports = {
     handleCreateUser, handleLoginUser, handleUpdateUser, handleGetInfoProfileUser,
     handleLoginWithRememberToken, handleLoginWithEmail, handleCreateFriendRequest,
-    handleDeleteFriendRequest,
+    handleDeleteFriendRequest, handleSearchUser,
 }

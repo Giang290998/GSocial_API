@@ -2,6 +2,7 @@ import db from '../models/index';
 import bcrypt from 'bcryptjs';
 import JWTAction from '../utils/JWTAction';
 import chatService from './chatService';
+import sequelize from 'sequelize';
 
 /*------------------------------------------------------ Main function ---------------------------------------------------------*/
 
@@ -238,6 +239,34 @@ let deleteFriendRequest = (fromUser, toUser, isAccept) => {
     })
 }
 
+let searchUser = (name) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let dataReturn = {}
+            const promiseA = db.UserInfo.findAll(
+                { where: { firstName: sequelize.where(sequelize.fn('LOWER', sequelize.col('firstName')), 'LIKE', '%' + name.toLowerCase() + '%') }}
+            )
+            const promiseB = db.UserInfo.findAll(
+                { where: { lastName: sequelize.where(sequelize.fn('LOWER', sequelize.col('lastName')), 'LIKE', '%' + name.toLowerCase() + '%') }}
+            )
+            const result = await Promise.all([ promiseA, promiseB ])
+            const resultSearch = [ ...result[0], ...result[1] ]
+            let ids = []
+            for (let i = 0; i < resultSearch.length; i++) {
+                ids.push(resultSearch[i].id)
+            }
+            const resultFilter = resultSearch.filter((value, index) => {
+                return ids.indexOf(value.id) === index
+            })
+            dataReturn.errCode = 0
+            dataReturn.resultSearch = resultFilter
+            resolve(dataReturn)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 /*----------------------------------------------------- Children function --------------------------------------------------------*/
 
 let updateAvatarUser = async (avatarUpdate, id) => {
@@ -329,5 +358,5 @@ let getInformationUserLogin = async (id) => {
 module.exports = {
     createNewUser, login, updateUser, checkUserExist, 
     getInfoProfileUser, loginWithRememberToken, loginWithEmail,
-    createFriendRequest, deleteFriendRequest,
+    createFriendRequest, deleteFriendRequest, searchUser,
 }

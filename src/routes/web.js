@@ -44,6 +44,8 @@ let initWebRoutes = (app) => {
 
     router.post('/api/token/refresh', tokenController.handleRenewToken)
 
+    router.get('/api/search/user/:stringSearch', userController.handleSearchUser)
+
     return app.use('/', requireToken, router); 
 
 };
