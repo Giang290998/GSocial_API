@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 app.use(cors({ 
     origin: `${process.env.FRONT_END_BASE_URL}`,
+    credentials: true,
 }));
 
 initWebRoutes(app);
