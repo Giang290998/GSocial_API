@@ -16,8 +16,8 @@ app.all("/", function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
     next();
 });
-// app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
-// app.options("*", cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200 }));
+app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+app.options("*", cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200 }));
 
 initWebRoutes(app);
 
