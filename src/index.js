@@ -11,7 +11,13 @@ const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
-app.use(cors());
+app.all(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+});
+// app.use(cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200, credentials: true }));
+// app.options("*", cors({ origin: `${process.env.FRONT_END_BASE_URL}`, optionsSuccessStatus: 200 }));
 
 initWebRoutes(app);
 
