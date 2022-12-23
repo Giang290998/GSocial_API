@@ -2,7 +2,7 @@ import weatherService from '../services/weatherService';
 import { createClient } from 'redis';
 require('dotenv').config()
 
-const redisClient = createClient({ url: `${process.env.REDIS_URL}` });
+const redisClient = createClient({ url: process.env.REDIS_URL });
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
 redisClient.connect().then(() => console.log('Redis Client Connected!'));
 

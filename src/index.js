@@ -11,10 +11,15 @@ const app = express();
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
-app.use(cors({ 
-    origin: `${process.env.FRONT_END_BASE_URL}`,
-    credentials: true,
-}));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(cors({ 
+        origin: `${process.env.FRONT_END_BASE_URL}`,
+        credentials: true,
+    }));
+} else {
+    app.use(cors());
+}
 
 initWebRoutes(app);
 

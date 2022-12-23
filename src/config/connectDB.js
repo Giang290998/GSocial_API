@@ -1,17 +1,23 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config()
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('gsocial_database_postgresql', 'gsocial_database_postgresql_user', '2MRix7hYJ5tQICHVuKR3G07duR2Cje6g', {
-    host: 'dpg-cd8qidha6gds9o6ofhe0-a.singapore-postgres.render.com',
-    dialect: 'postgres',
-    logging: false,
-    dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
+const sequelize = new Sequelize(
+    process.env.POSTGRE_DATABASE_NAME, 
+    process.env.POSTGRE_USER_NAME, 
+    process.env.POSTGRE_PASSWORD, 
+    {
+        host: process.env.POSTGRE_HOST,
+        dialect: 'postgres',
+        logging: false,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
         }
     }
-});
+);
 
 let connectDB = async () => {
     try {
