@@ -9,12 +9,6 @@
         "timezone": "+07:00",
         "query" : {
             "raw": true
-        },
-        "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-            }
         }
     },
     "test": {
@@ -27,12 +21,6 @@
         "timezone": "+07:00",
         "query" : {
             "raw": true
-        },
-        "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-            }
         }
     },
     "production": {
@@ -45,12 +33,6 @@
         "timezone": "+07:00",
         "query" : {
             "raw": true
-        },
-        "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-            }
         }
     }
 }
