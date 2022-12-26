@@ -34,7 +34,8 @@ ENV POSTGRES_USER=giang
 ENV POSTGRES_PASSWORD=nguyenhoanggiang290998
 ENV POSTGRES_DB=gsocial_db_postgre
 COPY dump.sql /docker-entrypoint-initdb.d/
+EXPOSE 5432
 
-# docker build -t gsocial-db-pg-image ./
+# docker build -t gsocial-db-pg-image .
 
 # docker run -d --name gsocial-db-pg-container -p 5432:5432 gsocial-db-pg-image
