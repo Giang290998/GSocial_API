@@ -10,12 +10,12 @@ const sequelize = new Sequelize(
         host: process.env.POSTGRE_HOST,
         dialect: 'postgres',
         logging: false,
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false
-            }
-        }
+        // dialectOptions: {
+        //     ssl: {
+        //         require: true,
+        //         rejectUnauthorized: false
+        //     }
+        // }
     }
 );
 
