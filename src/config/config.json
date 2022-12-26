@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "gsocial_database_postgresql_user",
-        "password": "2MRix7hYJ5tQICHVuKR3G07duR2Cje6g",
-        "database": "gsocial_database_postgresql",
-        "host": "dpg-cd8qidha6gds9o6ofhe0-a.singapore-postgres.render.com",
+        "username": "giang",
+        "password": "nguyenhoanggiang290998",
+        "database": "gsocial_db_postgre",
+        "host": "127.0.0.1",
         "logging": false,
         "dialect": "postgres",
         "timezone": "+07:00",
@@ -18,10 +18,10 @@
         }
     },
     "test": {
-        "username": "gsocial_database_postgresql_user",
-        "password": "2MRix7hYJ5tQICHVuKR3G07duR2Cje6g",
-        "database": "gsocial_database_postgresql",
-        "host": "dpg-cd8qidha6gds9o6ofhe0-a.singapore-postgres.render.com",
+        "username": "giang",
+        "password": "nguyenhoanggiang290998",
+        "database": "gsocial_db_postgre",
+        "host": "127.0.0.1",
         "logging": false,
         "dialect": "postgres",
         "timezone": "+07:00",
@@ -36,10 +36,10 @@
         }
     },
     "production": {
-        "username": "gsocial_database_postgresql_user",
-        "password": "2MRix7hYJ5tQICHVuKR3G07duR2Cje6g",
-        "database": "gsocial_database_postgresql",
-        "host": "dpg-cd8qidha6gds9o6ofhe0-a.singapore-postgres.render.com",
+        "username": "giang",
+        "password": "nguyenhoanggiang290998",
+        "database": "gsocial_db_postgre",
+        "host": "127.0.0.1",
         "logging": false,
         "dialect": "postgres",
         "timezone": "+07:00",
