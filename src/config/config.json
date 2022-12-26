@@ -3,7 +3,7 @@
         "username": "giang",
         "password": "nguyenhoanggiang290998",
         "database": "gsocial_db_postgre",
-        "host": "gsocial-db-pg-container",
+        "host": "172.17.0.1",
         "logging": false,
         "dialect": "postgres",
         "timezone": "+07:00",
