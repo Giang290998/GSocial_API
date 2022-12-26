@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  # These are the configurations for our Node app
+  # When Docker Compose starts this container it will automatically
+  # use the Dockerfile in the directory to configure it
+  app:
+    image: node:16.14.2
+    depends_on:
+      # Our app does not work without our database
+      # so this ensures our database is loaded first
+      - postgres
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - FRONT_END_BASE_URL=https://gsocial.onrender.com
+      - JWT_ACCESS_KEY=nguyenhoanggiang290998
+      - JWT_REFRESH_KEY=doanthihonghanh060401
+      - JWT_REMEMBER_KEY=nhoconchimnhieunuocnhungluoibieng
+      - OPEN_WEATHER_API_KEY=6b1fce80af6ceaad2bbc2a9f5b377eb1
+      - REDIS_URL=redis://default:Vc3d96G6jIuv54bbC4BGG8HO1zWHmlDj@redis-11097.c252.ap-southeast-1-1.ec2.cloud.redislabs.com:11097
+      - POSTGRE_HOST=postgres
+      - POSTGRE_DATABASE_NAME=gsocial_db_postgre
+      - POSTGRE_USER_NAME=giang
+      - POSTGRE_PASSWORD=nguyenhoanggiang290998
+    command: "npm start"
+    ports:
+      - "5000:5000"
+    volumes:
+      # Maps our current project directory `.` to
+      # our working directory in the container
+      - ./:/usr/src/app/
+      # node_modules workaround for volumes
+      # https://stackoverflow.com/a/32785014
+      - /usr/src/app/node_modules
+
+  # This is the configuration for our PostgreSQL database container
+  # Note the `postgres` name is important, in out Node app when we refer
+  # to  `host: "postgres"` that value is mapped on the network to the 
+  # address of this container.
+  postgres:
+    image: postgres:14
+    restart: always
+    environment:
+      # You can set the value of environment variables
+      # in your docker-compose.yml file
+      # Our Node app will use these to connect
+      # to the database
+      - POSTGRES_USER=giang
+      - POSTGRES_PASSWORD=nguyenhoanggiang290998
+      - POSTGRES_DB=gsocial_db_postgre
+    ports:
+      # Standard port for PostgreSQL databases
+      - "5432:5432"
+    volumes:
+      # When the PostgreSQL container is started it will run any scripts
+      # provided in the `docker-entrypoint-initdb.d` directory, this connects
+      # our seed file to that directory so that it gets run
+      - dump.sql:/docker-entrypoint-initdb.d/
