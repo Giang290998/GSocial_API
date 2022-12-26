@@ -26,6 +26,7 @@ ENV POSTGRE_PASSWORD=nguyenhoanggiang290998
 EXPOSE 5000
 
 CMD [ "npm", "start" ]
+#docker run --name gsocial-api-container -p 5000:5000 gsocial-api-image
 
 # dockerfile gsocial database
 
